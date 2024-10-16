@@ -1,0 +1,43 @@
+version: '3.8'
+name: hazelcast-cluster
+services:
+  hazelcast-1:
+    image: hazelcast/hazelcast:5.4
+    environment:
+      - HZ_NETWORK_PUBLICADDRESS=host.docker.internal:5701
+      - HZ_CLUSTERNAME=counter-cluster
+    ports:
+      - "5701:5701"
+    networks:
+      - hazelcast-network
+
+  hazelcast-2:
+    image: hazelcast/hazelcast:5.4
+    environment:
+      - HZ_NETWORK_PUBLICADDRESS=host.docker.internal:5702
+      - HZ_CLUSTERNAME=counter-cluster
+    ports:
+      - "5702:5701"
+    networks:
+      - hazelcast-network
+
+  hazelcast-3:
+    image: hazelcast/hazelcast:5.4
+    environment:
+      - HZ_NETWORK_PUBLICADDRESS=host.docker.internal:5703
+      - HZ_CLUSTERNAME=counter-cluster
+    ports:
+      - "5703:5701"
+    networks:
+      - hazelcast-network
+
+  hazelcast-management:
+    image: hazelcast/management-center:5.4 
+    networks:
+      - hazelcast-network
+    ports:
+      - "8080:8080"
+
+networks:
+  hazelcast-network:
+    name: hazelcast-network
