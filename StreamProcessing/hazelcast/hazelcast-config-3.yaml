@@ -1,0 +1,17 @@
+hazelcast:
+  cluster-name: dev
+  network:
+    public-address: "host.docker.internal:5703"
+    port:
+      auto-increment: true
+      port-count: 100
+      port: 5701
+  cp-subsystem:
+    cp-member-count: 3
+    base-dir: "/custom-cp-dir"
+    session-time-to-live-seconds: 90
+    session-heartbeat-interval-seconds: 5
+    missing-cp-member-auto-removal-seconds: 14400
+  jet:
+    enabled: true
+    resource-upload-enabled: true

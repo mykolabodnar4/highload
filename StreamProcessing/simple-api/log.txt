@@ -1,0 +1,68 @@
+2024-12-23 10:38:21.286 +01:00 [INF] Now listening on: http://localhost:5296
+2024-12-23 10:38:21.293 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-12-23 10:38:21.294 +01:00 [INF] Hosting environment: Development
+2024-12-23 10:38:21.294 +01:00 [INF] Content root path: C:\code\highload\highload-tasks\StreamProcessing\simple-api
+2024-12-23 10:38:44.274 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/ - null null
+2024-12-23 10:38:44.343 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Duplicate endpoint name 'GetWeatherForecast' found on 'HTTP: GET /weatherforecast2' and 'HTTP: GET /weatherforecast'. Endpoint names must be globally unique.
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.CreateMatcher(IReadOnlyList`1 endpoints)
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.Initialize()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher..ctor(EndpointDataSource dataSource, Lifetime lifetime, Func`1 matcherBuilderFactory)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcherFactory.CreateMatcher(EndpointDataSource dataSource)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.InitializeCoreAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.<Invoke>g__AwaitMatcher|10_0(EndpointRoutingMiddleware middleware, HttpContext httpContext, Task`1 matcherTask)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-12-23 10:38:44.367 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/ - 500 null text/html; charset=utf-8 95.2186ms
+2024-12-23 10:38:44.417 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/favicon.ico - null null
+2024-12-23 10:38:44.418 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Duplicate endpoint name 'GetWeatherForecast' found on 'HTTP: GET /weatherforecast2' and 'HTTP: GET /weatherforecast'. Endpoint names must be globally unique.
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher.CreateMatcher(IReadOnlyList`1 endpoints)
+   at Microsoft.AspNetCore.Routing.DataSourceDependentCache`1.Initialize()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher..ctor(EndpointDataSource dataSource, Lifetime lifetime, Func`1 matcherBuilderFactory)
+   at Microsoft.AspNetCore.Routing.Matching.DfaMatcherFactory.CreateMatcher(EndpointDataSource dataSource)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.InitializeCoreAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.<Invoke>g__AwaitMatcher|10_0(EndpointRoutingMiddleware middleware, HttpContext httpContext, Task`1 matcherTask)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2024-12-23 10:38:44.420 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/favicon.ico - 500 null text/plain; charset=utf-8 3.3722ms
+2024-12-23 10:39:04.068 +01:00 [INF] Application is shutting down...
+2024-12-23 10:40:09.369 +01:00 [INF] Now listening on: http://localhost:5296
+2024-12-23 10:40:09.382 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-12-23 10:40:09.383 +01:00 [INF] Hosting environment: Development
+2024-12-23 10:40:09.383 +01:00 [INF] Content root path: C:\code\highload\highload-tasks\StreamProcessing\simple-api
+2024-12-23 10:40:18.680 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/ - null null
+2024-12-23 10:40:18.752 +01:00 [WRN] Failed to determine the https port for redirect.
+2024-12-23 10:40:18.755 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/ - 404 0 null 76.4672ms
+2024-12-23 10:40:18.762 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5296/, Response status code: 404
+2024-12-23 10:40:24.083 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger - null null
+2024-12-23 10:40:24.089 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger - 301 0 null 7.0578ms
+2024-12-23 10:40:24.096 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/index.html - null null
+2024-12-23 10:40:24.165 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/index.html - 200 null text/html;charset=utf-8 69.5104ms
+2024-12-23 10:40:24.186 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/swagger-ui.css - null null
+2024-12-23 10:40:24.186 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/swagger-ui-bundle.js - null null
+2024-12-23 10:40:24.187 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/swagger-ui-standalone-preset.js - null null
+2024-12-23 10:40:24.213 +01:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2024-12-23 10:40:24.213 +01:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2024-12-23 10:40:24.229 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/swagger-ui-standalone-preset.js - 200 230280 text/javascript 42.5976ms
+2024-12-23 10:40:24.226 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/swagger-ui.css - 200 152034 text/css 39.7152ms
+2024-12-23 10:40:24.213 +01:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-12-23 10:40:24.241 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/swagger-ui-bundle.js - 200 1456926 text/javascript 54.757ms
+2024-12-23 10:40:24.334 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - null null
+2024-12-23 10:40:24.347 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/swagger/favicon-32x32.png - null null
+2024-12-23 10:40:24.349 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-12-23 10:40:24.351 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-12-23 10:40:24.354 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/favicon-32x32.png - 200 628 image/png 6.6146ms
+2024-12-23 10:40:24.447 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 112.9424ms
+2024-12-23 10:40:40.823 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5296/weatherforecast - null null
+2024-12-23 10:40:40.827 +01:00 [INF] Executing endpoint 'HTTP: GET /weatherforecast'
+2024-12-23 10:40:40.835 +01:00 [INF] Executed endpoint 'HTTP: GET /weatherforecast'
+2024-12-23 10:40:40.836 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5296/weatherforecast - 200 null application/json; charset=utf-8 13.7751ms
+2024-12-23 10:41:53.187 +01:00 [INF] Application is shutting down...
+2024-12-23 10:41:56.820 +01:00 [INF] Now listening on: http://localhost:5296
+2024-12-23 10:41:56.826 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-12-23 10:41:56.827 +01:00 [INF] Hosting environment: Development
+2024-12-23 10:41:56.827 +01:00 [INF] Content root path: C:\code\highload\highload-tasks\StreamProcessing\simple-api
+2024-12-23 10:42:11.169 +01:00 [INF] Application is shutting down...
