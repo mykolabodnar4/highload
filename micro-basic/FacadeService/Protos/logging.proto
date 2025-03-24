@@ -1,0 +1,32 @@
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "FacadeApi.Grpc.Logging";
+
+package logging;
+
+service MessageLogger {
+    rpc LogMessage(LogMessageRequest) returns (LogMessageResponse);
+
+    rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse);
+}
+
+message Message {
+    required string message_id = 1;
+    required string message_text = 2;
+}
+
+message LogMessageRequest {
+    required Message message = 1;
+}
+
+message LogMessageResponse {
+    required string message_id = 1;
+}
+
+message GetMessagesRequest {
+
+}
+
+message GetMessagesResponse {
+    required string messages = 1;
+}

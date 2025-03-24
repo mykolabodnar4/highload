@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\git\\highload-tasks\\micro-basic\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0FA9AB0D-2C21-E7A7-D240-96EFE8501992}|FacadeService\\FacadeService.csproj|e:\\git\\highload-tasks\\micro-basic\\facadeservice\\controllers\\logscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FA9AB0D-2C21-E7A7-D240-96EFE8501992}|FacadeService\\FacadeService.csproj|solutionrelative:facadeservice\\controllers\\logscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0FA9AB0D-2C21-E7A7-D240-96EFE8501992}|FacadeService\\FacadeService.csproj|e:\\git\\highload-tasks\\micro-basic\\facadeservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0FA9AB0D-2C21-E7A7-D240-96EFE8501992}|FacadeService\\FacadeService.csproj|solutionrelative:facadeservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5505D88A-39B3-1E44-8E0F-8ABF5F40EB9D}|MessagingService\\MessagingService.csproj|e:\\git\\highload-tasks\\micro-basic\\messagingservice\\controllers\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5505D88A-39B3-1E44-8E0F-8ABF5F40EB9D}|MessagingService\\MessagingService.csproj|solutionrelative:messagingservice\\controllers\\messagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LogsController.cs",
+              "DocumentMoniker": "E:\\git\\highload-tasks\\micro-basic\\FacadeService\\Controllers\\LogsController.cs",
+              "RelativeDocumentMoniker": "FacadeService\\Controllers\\LogsController.cs",
+              "ToolTip": "E:\\git\\highload-tasks\\micro-basic\\FacadeService\\Controllers\\LogsController.cs",
+              "RelativeToolTip": "FacadeService\\Controllers\\LogsController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCoAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T19:09:17.953Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MessagesController.cs",
+              "DocumentMoniker": "E:\\git\\highload-tasks\\micro-basic\\MessagingService\\Controllers\\MessagesController.cs",
+              "RelativeDocumentMoniker": "MessagingService\\Controllers\\MessagesController.cs",
+              "ToolTip": "E:\\git\\highload-tasks\\micro-basic\\MessagingService\\Controllers\\MessagesController.cs",
+              "RelativeToolTip": "MessagingService\\Controllers\\MessagesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T19:08:29.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\git\\highload-tasks\\micro-basic\\FacadeService\\Program.cs",
+              "RelativeDocumentMoniker": "FacadeService\\Program.cs",
+              "ToolTip": "E:\\git\\highload-tasks\\micro-basic\\FacadeService\\Program.cs*",
+              "RelativeToolTip": "FacadeService\\Program.cs*",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwBAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-15T19:03:21.916Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

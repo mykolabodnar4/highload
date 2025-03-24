@@ -1,0 +1,3 @@
+obj\Debug\net8.0\Protos/Logging.cs \
+obj\Debug\net8.0\Protos/LoggingGrpc.cs: C:/Users/FeelVR/.nuget/packages/grpc.tools/2.69.0/build/native/include/google/protobuf/empty.proto\
+ Protos/logging.proto

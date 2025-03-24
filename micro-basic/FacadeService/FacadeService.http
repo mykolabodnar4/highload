@@ -1,0 +1,6 @@
+@FacadeService_HostAddress = http://localhost:5219
+
+GET {{FacadeService_HostAddress}}/api/logs
+Accept: application/json
+
+###

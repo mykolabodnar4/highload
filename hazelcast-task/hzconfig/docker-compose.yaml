@@ -1,0 +1,57 @@
+name: hazelcast-cluster
+services:
+  hazelcast-1:
+    image: hazelcast/hazelcast:5.4
+    volumes:
+      - ./hazelcast-config-1.yaml:/opt/hazelcast/hazelcast-config-1.yaml 
+    environment:
+      - HAZELCAST_CONFIG=hazelcast-config-1.yaml
+      # - HZ_NETWORK_PUBLICADDRESS=host.docker.internal:5701
+      # - HZ_CLUSTERNAME=counter-cluster
+      # - HZ_CPSUBSYTEM_CPNUMBERCOUNT=3
+      # - HZ_CPSUBSYTEM_PERSISTENCEENABLED=true
+    ports:
+      - "5701:5701"
+    networks:
+      - hazelcast-network
+
+  hazelcast-2:
+    image: hazelcast/hazelcast:5.4
+    volumes:
+      - ./hazelcast-config-2.yaml:/opt/hazelcast/hazelcast-config-2.yaml 
+    environment:
+      - HAZELCAST_CONFIG=hazelcast-config-2.yaml
+      # - HZ_NETWORK_PUBLICADDRESS=host.docker.internal:5702
+      # - HZ_CLUSTERNAME=counter-cluster
+      # - HZ_CPSUBSYTEM_CPNUMBERCOUNT=3
+      # - HZ_CPSUBSYTEM_PERSISTENCEENABLED=true
+    ports:
+      - "5702:5701"
+    networks:
+      - hazelcast-network
+
+  hazelcast-3:
+    image: hazelcast/hazelcast:5.4
+    volumes:
+      - ./hazelcast-config-3.yaml:/opt/hazelcast/hazelcast-config-3.yaml 
+    environment:
+      - HAZELCAST_CONFIG=hazelcast-config-3.yaml
+      # - HZ_NETWORK_PUBLICADDRESS=host.docker.internal:5703
+      # - HZ_CLUSTERNAME=counter-cluster
+      # - HZ_CPSUBSYTEM_CPNUMBERCOUNT=3
+      # - HZ_CPSUBSYTEM_PERSISTENCEENABLED=true
+    ports:
+      - "5703:5701"
+    networks:
+      - hazelcast-network
+
+  hazelcast-management:
+    image: hazelcast/management-center:5.4 
+    networks:
+      - hazelcast-network
+    ports:
+      - "8080:8080"
+
+networks:
+  hazelcast-network:
+    name: hazelcast-network
