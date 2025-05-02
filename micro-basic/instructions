@@ -1,0 +1,86 @@
+Here's a script to generate self-signed development certificates with proper SANs (Subject Alternative Names) for multiple services (e.g., messaging-service, logging-service, facade-service). These will be valid inside Docker for HTTPS connections between services.
+
+✅ Bash Script: Generate Self-Signed Certs with SANs for Docker Services
+Save this as generate-dev-certs.sh in the root of your solution:
+
+bash
+Copier
+Modifier
+#!/bin/bash
+
+# Folder to store certificates
+CERT_DIR="$HOME/.aspnet/https"
+mkdir -p "$CERT_DIR"
+
+# Password for the .pfx file (same as in docker-compose)
+PASSWORD="enter-your-password-here"
+
+# List of services you want to generate certs for
+SERVICES=("messaging-service" "logging-service" "facade-service")
+
+for SERVICE in "${SERVICES[@]}"; do
+  echo "Generating cert for $SERVICE..."
+
+  openssl req -x509 -newkey rsa:2048 -sha256 -days 365 -nodes \
+    -keyout "$CERT_DIR/$SERVICE.key" \
+    -out "$CERT_DIR/$SERVICE.crt" \
+    -subj "/CN=$SERVICE" \
+    -addext "subjectAltName=DNS:$SERVICE" \
+    2>/dev/null
+
+  openssl pkcs12 -export \
+    -out "$CERT_DIR/$SERVICE.pfx" \
+    -inkey "$CERT_DIR/$SERVICE.key" \
+    -in "$CERT_DIR/$SERVICE.crt" \
+    -passout pass:$PASSWORD \
+    2>/dev/null
+
+  echo "✔️  Cert for $SERVICE created at: $CERT_DIR/$SERVICE.pfx"
+done
+🧪 How to Use
+Make it executable:
+
+bash
+Copier
+Modifier
+chmod +x generate-dev-certs.sh
+Run it:
+
+bash
+Copier
+Modifier
+./generate-dev-certs.sh
+📦 Update Docker Compose Volumes
+Make sure each service uses its own .pfx file:
+
+yaml
+Copier
+Modifier
+messaging-service:
+  ...
+  environment:
+    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/messaging-service.pfx
+  volumes:
+    - ~/.aspnet/https:/https:ro
+
+logging-service:
+  ...
+  environment:
+    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/logging-service.pfx
+  volumes:
+    - ~/.aspnet/https:/https:ro
+
+facade-service:
+  ...
+  environment:
+    - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/facade-service.pfx
+  volumes:
+    - ~/.aspnet/https:/https:ro
+🧼 Bonus Tip: Clean Old Certs (optional)
+You can add this to the top of the script to clean up any old certs:
+
+bash
+Copier
+Modifier
+rm -f "$CERT_DIR"/*.pfx "$CERT_DIR"/*.crt "$CERT_DIR"/*.key
+Let me know if you want the Windows PowerShell version too!

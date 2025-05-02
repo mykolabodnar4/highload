@@ -1,7 +1,5 @@
-using FacadeApi.Grpc.Logging;
 using FacadeService.Clients;
-using Grpc.Core;
-using Grpc.Net.Client.Configuration;
+using FacadeService.Extensions;
 
 internal class Program
 {
@@ -17,31 +15,14 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddGrpcClient<MessageLogger.MessageLoggerClient>(options =>
+        builder.Services.ConfigureGrpc(builder.Configuration);
+        builder.Services.ConfigureKafkaProducer(builder.Configuration);
+        
+        builder.Services.AddHttpClient<MessagingApiClient>(client =>
         {
-            options.Address = new Uri(builder.Configuration["LoggingService:Url"] ?? string.Empty);
-        }).ConfigureChannel(options =>
-        {
-            options.ServiceConfig = new ServiceConfig();
-            options.ServiceConfig.MethodConfigs.Add(
-                new MethodConfig
-                {
-                    Names = { MethodName.Default },
-                    RetryPolicy = new RetryPolicy
-                    {
-                        MaxAttempts = 10,
-                        InitialBackoff = TimeSpan.FromSeconds(1),
-                        MaxBackoff = TimeSpan.FromSeconds(5),
-                        BackoffMultiplier = 1.5,
-                        RetryableStatusCodes = { StatusCode.Unavailable }
-                    }
-                }
-            );
-        });
-
-        builder.Services.AddHttpClient<MessagingServiceClient>(client =>
-        {
-            client.BaseAddress = new Uri(builder.Configuration["MessagingService:Url"] ?? string.Empty);
+            var addresses = builder.Configuration.GetSection("MessagingService:Urls").Get<string[]>() ?? [];
+            var index = new Random().Next(0, 1);
+            client.BaseAddress = new Uri(addresses is [] ? "" : addresses[index]);
         });
 
         var app = builder.Build();

@@ -5,7 +5,7 @@ namespace LoggingApi.Grpc;
 public interface ILogRepository
 {
     Task<Message> SaveMessage(Message message);
-    Task<List<Message>> GetMessages();
+    Task<List<Message>> GetAllMessages();
 }
 
 public class InMemoryLogRepository(ConcurrentDictionary<string, Message> dictionary) : ILogRepository
@@ -16,7 +16,7 @@ public class InMemoryLogRepository(ConcurrentDictionary<string, Message> diction
         return Task.FromResult(value);
     }
 
-    public Task<List<Message>> GetMessages()
+    public Task<List<Message>> GetAllMessages()
     {
         var messages = dictionary.Values.ToList();
         return Task.FromResult(messages);

@@ -1,20 +1,18 @@
+using MessagingService.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MessagingService.Controllers;
 
 [ApiController]
 [Route("api/messages")]
-public class MessagesController : ControllerBase
+public class MessagesController(
+    IMessageRepository messageRepository
+) : ControllerBase
 {
-    [HttpPost]
-    public IActionResult Post(object message)
-    {
-        return Ok("Not implemented");
-    }
-
     [HttpGet]
-    public IActionResult Get()
+    public async Task<IActionResult> Get()
     {
-        return Ok("Not implemented");
+        var messages = await messageRepository.GetMessages();
+        return Ok(messages);
     }
 }

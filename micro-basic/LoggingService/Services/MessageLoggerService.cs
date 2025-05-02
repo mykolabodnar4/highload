@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Concurrent;
-using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
-using LoggingApi.Grpc;
 
 namespace LoggingApi.Grpc;
 
@@ -25,7 +21,7 @@ public class MessageLoggerService(
     public override async Task<GetMessagesResponse> GetMessages(GetMessagesRequest request, ServerCallContext context)
     {
         logger.LogInformation("Getting messages");
-        var messages = await repository.GetMessages();
+        var messages = await repository.GetAllMessages();
         var response = new GetMessagesResponse
         {
             Messages = string.Join("; ", messages.Select(message => message.MessageText)),

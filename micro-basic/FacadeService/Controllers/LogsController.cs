@@ -1,5 +1,6 @@
 using FacadeApi.Grpc.Logging;
 using FacadeService.Clients;
+using FacadeService.Services;
 using Microsoft.AspNetCore.Mvc;
 
 using MessageLoggerClient = FacadeApi.Grpc.Logging.MessageLogger.MessageLoggerClient;
@@ -9,8 +10,9 @@ namespace FacadeService.Controllers;
 [ApiController]
 [Route("api/logs")]
 public class LogsController(
-    MessagingServiceClient messagingServiceClient,
+    MessagingApiClient messagingServiceClient,
     MessageLoggerClient loggerServiceClient,
+    IKafkaPublisher kafkaPublisher,
     ILogger<LogsController> logger) 
     : ControllerBase
 {
@@ -22,12 +24,13 @@ public class LogsController(
             MessageId = Guid.NewGuid().ToString(),
             MessageText = message,
         };
+
         var grpcCall = loggerServiceClient.LogMessageAsync(new LogMessageRequest { Message = messageObj });
         var r = await grpcCall.ResponseAsync;
         var h = await grpcCall.ResponseHeadersAsync;
         logger.LogInformation("Response from Logging service: {@Response}", r);
         logger.LogInformation("Response headers from Logging service: {@Headers}", h);
-        await messagingServiceClient.PublishMessage(messageObj);
+        await kafkaPublisher.Publish(messageObj);
 
         return Ok(messageObj);
     }
