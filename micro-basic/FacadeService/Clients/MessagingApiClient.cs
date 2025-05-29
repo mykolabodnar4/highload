@@ -6,7 +6,7 @@ public class MessagingApiClient(HttpClient httpClient, ILogger<MessagingApiClien
     {
         try
         {
-            string path = "messages";
+            string path = "api/messages";
             var request = new HttpRequestMessage(HttpMethod.Get, path);
             var response = await httpClient.SendAsync(request);
             var apiResponse = await response.Content.ReadAsStringAsync();

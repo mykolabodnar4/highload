@@ -1,13 +1,27 @@
+using Aoxe.Extensions.Configuration.Consul.Json;
+using Consul;
 using FacadeService.Clients;
 using FacadeService.Extensions;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+using Steeltoe.Discovery.Consul;
+using Steeltoe.Discovery.HttpClients;
 
 internal class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Logging.ClearProviders().AddConsole();
+        builder.Configuration.AddConsulJson(
+            new ConsulClientConfiguration
+            {
+                Address = new Uri("http://localhost:8500"),
+                Datacenter = "dc1",
+            },
+            "facade-service"
+        );
 
         // Add services to the container.
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -15,15 +29,15 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.ConfigureGrpc(builder.Configuration);
-        builder.Services.ConfigureKafkaProducer(builder.Configuration);
-        
+        builder.Services.AddConsulDiscoveryClient();
         builder.Services.AddHttpClient<MessagingApiClient>(client =>
         {
-            var addresses = builder.Configuration.GetSection("MessagingService:Urls").Get<string[]>() ?? [];
-            var index = new Random().Next(0, 1);
-            client.BaseAddress = new Uri(addresses is [] ? "" : addresses[index]);
-        });
+            client.BaseAddress = new Uri("http://messaging-service/");
+        }).AddServiceDiscovery();
+
+        builder.Services.ConfigureHttpClientDefaults(clientBuilder => clientBuilder.AddServiceDiscovery());
+        builder.Services.ConfigureGrpc(builder.Configuration);
+        builder.Services.ConfigureKafkaProducer(builder.Configuration);
 
         var app = builder.Build();
 
@@ -33,7 +47,6 @@ internal class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-
         app.UseHttpsRedirection();
         app.MapControllers();
 

@@ -7,6 +7,9 @@ using LoggingService;
 using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
+using Steeltoe.Discovery.Consul;
+using Aoxe.Extensions.Configuration.Consul.Json;
+using Consul;
 
 internal class Program
 {
@@ -15,6 +18,14 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
         
         builder.Logging.ClearProviders().AddConsole();
+        builder.Configuration.AddConsulJson(
+            new ConsulClientConfiguration
+            {
+                Address = new Uri("http://localhost:8500"),
+                Datacenter = "dc1",
+            },
+            "logging-service"
+        );
 
         // Add services to the container.
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -35,6 +46,10 @@ internal class Program
         services.AddScoped<ILogRepository, HazelcastLogRepository>();
         services.AddScoped<IHazelcastClientProvider, HazelcastClientProvider>();
         
+        builder.Services.AddConsulDiscoveryClient();
+        
+        builder.WebHost.UseKestrel();
+
         var app = builder.Build();
 
         app.UseSerilogRequestLogging(options =>

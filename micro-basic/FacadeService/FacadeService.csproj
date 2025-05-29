@@ -16,7 +16,10 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
+    <PackageReference Include="Steeltoe.Discovery.Consul" Version="4.0.0-beta1" />
+    <PackageReference Include="Steeltoe.Discovery.HttpClients" Version="4.0.0-beta1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Aoxe.Extensions.Configuration.Consul.Json" Version="2025.1.0" />
   </ItemGroup>
   
   <ItemGroup>

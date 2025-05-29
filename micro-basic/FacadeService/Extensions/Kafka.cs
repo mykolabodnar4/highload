@@ -1,4 +1,3 @@
-using System;
 using System.Net;
 using Confluent.Kafka;
 using FacadeService.Services;
