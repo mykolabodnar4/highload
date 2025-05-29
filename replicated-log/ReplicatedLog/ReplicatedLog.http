@@ -1,0 +1,6 @@
+@ReplicatedLog_HostAddress = http://localhost:5164
+
+GET {{ReplicatedLog_HostAddress}}/messages/
+Accept: application/json
+
+###

@@ -1,0 +1,35 @@
+services:
+  primary:
+    build:
+      context: ./ReplicatedLog
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - LogConfig__Mode=Primary
+      - LogConfig__Secondaries__0=http://host.docker.internal:7001
+      - LogConfig__Secondaries__1=http://host.docker.internal:7002
+    restart: always
+    ports:
+      - "7000:8080"
+
+  secondary1:
+    build:
+      context: ./ReplicatedLog
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - LogConfig:Mode=Secondary
+    restart: always
+    ports:
+      - "7001:8080"
+  
+  secondary2:
+    build:
+      context: ./ReplicatedLog
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - LogConfig:Mode=Secondary
+    restart: always
+    ports:
+      - "7002:8080"
